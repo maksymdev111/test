@@ -1,0 +1,137 @@
+---
+format_version: '13'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: cordova
+workflows:
+  backup:
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@8: {}
+    - restore-npm-cache@1: {}
+    - npm@1:
+        inputs:
+        - workdir: "$CORDOVA_WORK_DIR"
+        - command: install
+    - certificate-and-profile-installer@1:
+        inputs:
+        - install_defaults: 'no'
+    - generate-cordova-build-configuration@0:
+        inputs:
+        - development_team: 5CQ8SVW327
+        - package_type: app-store
+        - code_sign_identity: iPhone Distribution
+        - provisioning_profile: ebff7bf1-b123-4e5a-ae58-919603a6b079
+        - configuration: release
+    - cordova-prepare@1: {}
+    - change-android-versioncode-and-versionname@1:
+        inputs:
+        - build_gradle_path: "$BITRISE_SOURCE_DIR/platforms/android/app/build.gradle"
+        - version_code_offset: '1'
+        - versioncode: 100$BITRISE_BUILD_NUMBER
+        - versionName: 1.0.$BITRISE_BUILD_NUMBER
+    - set-ios-info-plist-unified@1:
+        inputs:
+        - bundle_version: 1.0.$BITRISE_BUILD_NUMBER
+        - bundle_version_short: 1.0.$BITRISE_BUILD_NUMBER
+        - info_plist_file: "$BITRISE_SOURCE_DIR/platforms/ios/DrinkExpres/DrinkExpres-Info.plist"
+    - restore-gradle-cache@2: {}
+    - cordova-archive@3:
+        inputs:
+        - workdir: "$CORDOVA_WORK_DIR"
+        - android_app_type: aab
+        - run_cordova_prepare: 'false'
+    - google-play-deploy@3:
+        inputs:
+        - expansionfile_path:
+        - package_name: nrvmobile.mojaapka.sk
+        - release_name: tEST
+        - verbose_log: 'true'
+        - service_account_json_key_path: "$BITRISEIO_SERVICEJSON_URL"
+    - deploy-to-itunesconnect-application-loader@1:
+        inputs:
+        - api_key_path:
+        - api_issuer:
+        - itunescon_user:
+        - password:
+        - app_password:
+        - platform: ios
+        - connection: api_key
+    - save-gradle-cache@1: {}
+    - save-npm-cache@1: {}
+    - deploy-to-bitrise-io@2: {}
+  primary:
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@8: {}
+    - restore-npm-cache@1: {}
+    - npm@1:
+        inputs:
+        - workdir: "$CORDOVA_WORK_DIR"
+        - command: install
+    - certificate-and-profile-installer@1:
+        inputs:
+        - install_defaults: 'no'
+    - generate-cordova-build-configuration@0:
+        inputs:
+        - development_team: 5CQ8SVW327
+        - package_type: app-store
+        - code_sign_identity: iPhone Distribution
+        - provisioning_profile: ebff7bf1-b123-4e5a-ae58-919603a6b079
+        - configuration: release
+    - cordova-prepare@1: {}
+    - change-android-versioncode-and-versionname@1:
+        inputs:
+        - build_gradle_path: "$BITRISE_SOURCE_DIR/platforms/android/app/build.gradle"
+        - version_code_offset: '1'
+        - versioncode: 100$BITRISE_BUILD_NUMBER
+        - versionName: 1.0.$BITRISE_BUILD_NUMBER
+    - set-ios-info-plist-unified@1:
+        inputs:
+        - bundle_version: 1.0.$BITRISE_BUILD_NUMBER
+        - bundle_version_short: 1.0.$BITRISE_BUILD_NUMBER
+        - info_plist_file: "$BITRISE_SOURCE_DIR/platforms/ios/DrinkExpres/DrinkExpres-Info.plist"
+    - restore-gradle-cache@2: {}
+    - cordova-archive@3:
+        inputs:
+        - workdir: "$CORDOVA_WORK_DIR"
+        - run_cordova_prepare: 'false'
+        - android_app_type: aab
+    - google-play-deploy@3:
+        inputs:
+        - expansionfile_path:
+        - package_name: nrvmobile.mojaapka.sk
+        - verbose_log: 'true'
+        - track: production
+        - release_name: Viktor Product Test
+        - service_account_json_key_path: "$BITRISEIO_SERVICEJSON_URL"
+    - deploy-to-itunesconnect-application-loader@1:
+        inputs:
+        - api_key_path:
+        - api_issuer:
+        - itunescon_user:
+        - password:
+        - app_password:
+        - platform: ios
+        - connection: api_key
+    - save-gradle-cache@1: {}
+    - save-npm-cache@1: {}
+    - deploy-to-bitrise-io@2: {}
+meta:
+  bitrise.io:
+    stack: osx-xcode-15.0.x
+    machine_type_id: g2-m1.4core
+app:
+  envs:
+  - opts:
+      is_expand: false
+    CORDOVA_WORK_DIR: "."
+  - opts:
+      is_expand: false
+    CORDOVA_PLATFORM: ios,android
+trigger_map:
+- push_branch: main
+  workflow: primary
+- pull_request_source_branch: "*"
+  workflow: primary
