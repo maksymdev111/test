@@ -21,7 +21,7 @@ workflows:
         - development_team: 5CQ8SVW327
         - package_type: app-store
         - code_sign_identity: iPhone Distribution
-        - provisioning_profile: ebff7bf1-b123-4e5a-ae58-919603a6b079
+        - provisioning_profile: ef78b2c7-be72-4ac7-8a91-3b2b7b91a7b4
         - configuration: release
     - cordova-prepare@1: {}
     - change-android-versioncode-and-versionname@1:
@@ -78,7 +78,7 @@ workflows:
         - development_team: 5CQ8SVW327
         - package_type: app-store
         - code_sign_identity: iPhone Distribution
-        - provisioning_profile: ebff7bf1-b123-4e5a-ae58-919603a6b079
+        - provisioning_profile: ef78b2c7-be72-4ac7-8a91-3b2b7b91a7b4
         - configuration: release
     - cordova-prepare@1: {}
     - change-android-versioncode-and-versionname@1:
