@@ -13,29 +13,28 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "devDependencies": {
-    "cordova-android": "^10.1.2",
-    "cordova-browser": "^6.0.0",
+    "cordova-android": "^11.0.0",
+    "cordova-ios": "5.1.1",
     "cordova-plugin-device": "^2.1.0",
     "cordova-plugin-geolocation": "^5.0.0",
-    "cordova-plugin-inappbrowser": "^5.0.0",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
-    "cordova-plugin-ionic-webview": "^5.0.0",
-    "cordova-plugin-statusbar": "^2.4.2",
-    "cordova.plugins.diagnostic": "^7.1.4",
-    "onesignal-cordova-plugin": "^3.3.0"
+    "cordova-plugin-ionic-webview": "^5.0.1",
+    "cordova-plugin-splashscreen": "^6.0.2",
+    "cordova-plugin-statusbar": "^4.0.0",
+    "onesignal-cordova-plugin": "^5.1.2"
   },
   "cordova": {
     "platforms": [
-      "browser",
       "ios",
       "android"
     ],
     "plugins": {
+      "cordova-plugin-inappbrowser": {},
       "cordova-plugin-device": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-splashscreen": {},
       "onesignal-cordova-plugin": {},
       "cordova-plugin-geolocation": {
         "GPS_REQUIRED": "true"
@@ -47,6 +46,6 @@
     }
   },
   "dependencies": {
-    "cordova-ios": "^5.1.1"
+    "cordova-plugin-inappbrowser": "https://github.com/bugsniper/cordova-plugin-inappbrowser"
   }
 }
