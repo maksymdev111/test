@@ -13,7 +13,6 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "devDependencies": {
-    "cordova-android": "^13.0.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-device": "^2.1.0",
     "cordova-plugin-geolocation": "^5.0.0",
@@ -27,8 +26,7 @@
   "cordova": {
     "platforms": [
       "browser",
-      "ios",
-      "android"
+      "ios"
     ],
     "plugins": {
       "cordova-plugin-device": {},
