@@ -1,5 +1,5 @@
 {
-  "name": "com.nrvmobile.mojaapka.sk",
+  "name": "nrvmobile.mojaapka.sk",
   "displayName": "NRvMobile",
   "version": "1.0.11",
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
@@ -13,6 +13,7 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "devDependencies": {
+    "cordova-android": "^10.1.2",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-device": "^2.1.0",
     "cordova-plugin-geolocation": "^5.0.0",
@@ -26,7 +27,8 @@
   "cordova": {
     "platforms": [
       "browser",
-      "ios"
+      "ios",
+      "android"
     ],
     "plugins": {
       "cordova-plugin-device": {},
