@@ -34,7 +34,7 @@ workflows:
         inputs:
         - bundle_version: 1.0.$BITRISE_BUILD_NUMBER
         - bundle_version_short: 1.0.$BITRISE_BUILD_NUMBER
-        - info_plist_file: "$BITRISE_SOURCE_DIR/platforms/ios/DrinkExpres/DrinkExpres-Info.plist"
+        - info_plist_file: "$BITRISE_SOURCE_DIR/platforms/ios/NRvMobile/NRvMobile-Info.plist"
     - restore-gradle-cache@2: {}
     - cordova-archive@3:
         inputs:
@@ -91,7 +91,7 @@ workflows:
         inputs:
         - bundle_version: 1.0.$BITRISE_BUILD_NUMBER
         - bundle_version_short: 1.0.$BITRISE_BUILD_NUMBER
-        - info_plist_file: "$BITRISE_SOURCE_DIR/platforms/ios/DrinkExpres/DrinkExpres-Info.plist"
+        - info_plist_file: "$BITRISE_SOURCE_DIR/platforms/ios/NRvMobile/NRvMobile-Info.plist"
     - restore-gradle-cache@2: {}
     - cordova-archive@3:
         inputs:
