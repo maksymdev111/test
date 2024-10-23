@@ -44,7 +44,7 @@ workflows:
     - google-play-deploy@3:
         inputs:
         - expansionfile_path:
-        - package_name: nrvmobile.mojaapka.sk
+        - package_name: com.nrvmobile.mojaapka.sk
         - release_name: tEST
         - verbose_log: 'true'
         - service_account_json_key_path: "$BITRISEIO_SERVICEJSON_URL"
@@ -101,7 +101,7 @@ workflows:
     - google-play-deploy@3:
         inputs:
         - expansionfile_path:
-        - package_name: nrvmobile.mojaapka.sk
+        - package_name: com.nrvmobile.mojaapka.sk
         - verbose_log: 'true'
         - track: production
         - release_name: Viktor Product Test
